@@ -1,70 +1,92 @@
-#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netdb.h>
 #include <string>
-#include <vector>
+#include <iostream>
+#include <sstream>
+#include "client_login.cpp"
+
+
 
 using namespace std;
-string AS_ip, AS_port;
-char command;
-int check = 1;
+
+
 
 
 int main(int argc, char* argv[]) {
-    AS_ip = string(argv[2]);
-    AS_port = string(argv[4]);
+    char *AS_ip, *AS_port;
+    int check = 1;
+    string command, keywords[5];
+    AS_ip = argv[2];
+    AS_port =argv[4];
 
     while(check){
         cin >> command;
-        cout << command << endl;
-        switch(command){
-            case 'login':
-                //TODO: login();
-                break;
+        getline(cin, keywords[0]);
+        istringstream iss(keywords[0]);
+        int i = 0;
+        while (iss >> keywords[i+1] && i < 5) {
+            i++;
+        }
 
-            case 'logout':
-                //TODO: logout();
-                break;
+        if (command == "login"){
+            string userID = keywords[1], password = keywords[2];
+            client_login(userID, password, AS_ip, AS_port);
+            //TODO: verificar se funciona a 100%;
+        }
+        else if (command == "logout"){
+            //TODO: logout();
+        }
+        
 
-            case 'unregister':
-                //TODO: unregister();
-                break;
+        else if (command == "unregister"){
+            //TODO: unregister();
+        }
+        
+        else if (command == "open"){
+            //TODO: open();
+        }
             
-            case 'open':
-                //TODO: open();
-                break;
+        
+        else if (command == "close"){
+            //TODO: close();
+        }
             
-            case 'close':
-                //TODO: close();
-                break;
 
-            case 'myauctions':  
-            case 'ma':
-                //TODO: myauctions();
-                break;
+        else if (command == "myauctions"|| command == "ma"){
+            //TODO: myauctions();
+        }
             
-            case 'list':
-            case 'l':
-                //TODO: list();
-                break;
+        
+        else if (command == "list" || command == "l"){
+            //TODO: list();
+        }
+            
 
-            case 'show_asset':
-            case 'sa':
-                //TODO: show_asset();
-                break;
+        else if (command == "show_asset"|| command == "sa"){
+            //TODO: show_asset();
+        }
+            
 
-            case 'bid':
-            case 'b':
-                //TODO: bid();
-                break;
+        else if (command == "bid"|| command == "b"){
+            //TODO: bid();
+        }
+            
 
-            case 'show_record':
-            case 'sr':
-                //TODO: show_record();
-                break;
+        else if (command == "show_record" ||command == "sr"){
+            //TODO: show_record();
+        }
+            
 
-            case 'exit':
-                check = 0;
-                break;
-       }        
-    }
+        else if (command == "exit"){
+            check = 0;
+        }
+            
+    }        
     return 0;
 }
+
