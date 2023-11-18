@@ -1,26 +1,14 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#include <netdb.h>
-#include <string>
-#include <iostream>
-#include <sstream>
+#include "sockets.h"
 #include "client_login.cpp"
-
-
+#include "client_logout.cpp"
 
 using namespace std;
-
-
 
 
 int main(int argc, char* argv[]) {
     char *AS_ip, *AS_port;
     int check = 1;
-    string command, keywords[5];
+    string command, keywords[5], userID, password;
     AS_ip = argv[2];
     AS_port =argv[4];
 
@@ -34,12 +22,15 @@ int main(int argc, char* argv[]) {
         }
 
         if (command == "login"){
-            string userID = keywords[1], password = keywords[2];
+            userID = keywords[1];
+            password = keywords[2];
             client_login(userID, password, AS_ip, AS_port);
             //TODO: verificar se funciona a 100%;
         }
         else if (command == "logout"){
-            //TODO: logout();
+            userID = keywords[1];
+            password = keywords[2];
+            client_logout(userID, password, AS_ip, AS_port);
         }
         
 
