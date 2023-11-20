@@ -1,19 +1,17 @@
 #include "sockets.h"
 #include "client_login.cpp"
+#include <typeinfo>
 //#include "client_logout.cpp"
+#define AS_ip "tejo.tecnico.ulisboa.pt"
+#define AS_port "580011"
+
 
 using namespace std;
 
 
 int main(int argc, char* argv[]) {
-    char *AS_ip, *AS_port;
     int check = 1;
     string command, keywords[5], userID, password;
-    AS_ip = argv[2];
-    AS_port =argv[4];
-
-    cout << AS_ip << endl;
-    cout << AS_port << endl;
 
 
     while(check){
@@ -23,7 +21,7 @@ int main(int argc, char* argv[]) {
         int i = 0;
         while (iss >> keywords[i+1] && i < 5) {
             i++;
-        }
+        }  
 
         if (command == "login"){
             userID = keywords[1];
