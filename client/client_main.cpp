@@ -1,6 +1,6 @@
 #include "sockets.h"
 #include "client_login.cpp"
-#include "client_logout.cpp"
+//#include "client_logout.cpp"
 
 using namespace std;
 
@@ -11,6 +11,10 @@ int main(int argc, char* argv[]) {
     string command, keywords[5], userID, password;
     AS_ip = argv[2];
     AS_port =argv[4];
+
+    cout << AS_ip << endl;
+    cout << AS_port << endl;
+
 
     while(check){
         cin >> command;
@@ -30,7 +34,7 @@ int main(int argc, char* argv[]) {
         else if (command == "logout"){
             userID = keywords[1];
             password = keywords[2];
-            client_logout(userID, password, AS_ip, AS_port);
+            //client_logout(userID, password, AS_ip, AS_port);
         }
         
 

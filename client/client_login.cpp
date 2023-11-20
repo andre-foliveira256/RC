@@ -1,9 +1,14 @@
 #include "sockets.h"
 
-using namespace std;
-
 void client_login(string userID, string password, char* AS_ip, char* AS_port){
     
+    using namespace std;
+    int sockfd, errcode;
+    ssize_t n;
+    struct addrinfo hints, *res;
+    struct sockaddr_in serv_addr;
+    socklen_t addrlen;
+
 
     string buffer = "LIN " + userID + " " + password +"\n";
     size_t len = strlen(buffer.c_str());

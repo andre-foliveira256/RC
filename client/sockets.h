@@ -10,8 +10,3 @@
 #include <cstring>
 #include <sstream>
 
-int sockfd, errcode;
-ssize_t n;
-struct addrinfo hints, *res;
-struct sockaddr_in serv_addr;
-socklen_t addrlen;
