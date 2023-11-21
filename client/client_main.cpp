@@ -3,7 +3,7 @@
 #include <typeinfo>
 //#include "client_logout.cpp"
 #define AS_ip "tejo.tecnico.ulisboa.pt"
-#define AS_port "580011"
+#define AS_port "58011"
 
 
 using namespace std;
