@@ -82,8 +82,7 @@ int main(int argc, char *argv[]){
         if (fd == -1) exit(1);
         memset(&hints, 0, sizeof hints);
         hints.ai_family = AF_INET;
-        hints.ai_socktype = SOCK_DGRAM;
-        hints.ai_flags = AI_NUMERICSERV;
+        hints.ai_socktype = SOCK_DGRAM; //TODO: Ter atençao a ao udp RELEMBRAMENTO
         errcode = getaddrinfo(AS_ip, AS_port, &hints, &res);
         if (errcode != 0) exit(1);
 
