@@ -10,16 +10,6 @@
 #define AS_ip "tejo.tecnico.ulisboa.pt"
 #define AS_port "58011"
 
-
-void client_login(char *userID,char *password, const char *ASip, const char *ASport) {
-
-    // Create message
-    
-
-
-
-
-}
 /* 
 void myauctions(const char *userID, const char *ASip, const char *ASport) {
     int clientSocket;
