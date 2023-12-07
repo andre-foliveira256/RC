@@ -7,11 +7,7 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <string.h>
-#include "client_login.c"
-#include "client_logout.c"
-#include "client_unregister.c"
-#include "translate_buff.c"
-#include "read_input.c"
+#include "includes.h"
 
 
 #define AS_ip "tejo.tecnico.ulisboa.pt"
