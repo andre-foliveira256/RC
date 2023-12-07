@@ -35,14 +35,21 @@ int read_input(char* buffer, char* input, char* userID, char* password){
 
     else if (!strcmp(command, "open")){
 
-
+        return TCP;
     }
     else if(!strcmp(command, "close")){
 
+        return TCP;
     }
     else if (!strcmp(command, "myauctions") || !strcmp(command, "ma")) {
         /* myauctions(userID, AS_ip, AS_port);
             *///TODO ver se está a funcionar bem
+
+
+
+
+
+
     }
 
     else if(!strcmp(command, "mybids") || !strcmp(command, "mb")){
