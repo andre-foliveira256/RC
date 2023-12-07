@@ -65,6 +65,3 @@ int read_input(char* buffer, char* input, char* userID, char* password){
         return EXIT;
     }
 }
-
-
-
