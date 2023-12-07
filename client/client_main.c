@@ -24,44 +24,6 @@ char userID[6];
 char password[8];
 char buffer[128];
 
-/* 
-void myauctions(const char *userID, const char *ASip, const char *ASport) {
-    int clientSocket;
-    struct sockaddr_in serverAddr;
-    socklen_t addrSize = sizeof(serverAddr);
-
-    clientSocket = socket(AF_INET, SOCK_DGRAM, 0);
-    if (clientSocket < 0) {
-        fprintf(stderr, "Error creating socket\n");
-        return;
-    }
-
-    serverAddr.sin_family = AF_INET;
-    serverAddr.sin_port = htons(atoi(ASport));
-    serverAddr.sin_addr.s_addr = inet_addr(AS_ip);
-
-    char requestMessage[256];
-    snprintf(requestMessage, sizeof(requestMessage), "LMA %s", userID);
-
-    sendto(clientSocket, requestMessage, strlen(requestMessage), 0,
-           (struct sockaddr *)&serverAddr, sizeof(serverAddr));
-
-    char buffer[128];
-    memset(buffer, 0, sizeof(buffer));
-
-    int bytesRead = recvfrom(clientSocket, buffer, sizeof(buffer), 0,
-                             (struct sockaddr *)&serverAddr, &addrSize);
-
-    if (bytesRead > 0) {
-        printf("Received response: %s\n", buffer);
-        // Process the received data (list of auctions or information message)
-    } else {
-        printf("No response received from the server.\n");
-    }
-
-    close(clientSocket);
-}
- */
 int main(int argc, char *argv[]){
     int check = 1, sock_mode;
     char input[128];
