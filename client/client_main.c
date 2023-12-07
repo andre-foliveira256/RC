@@ -97,15 +97,6 @@ int main(int argc, char *argv[]){
 
         }
         else if(sock_mode == EXIT) exit(1);
-
-        //analyse message
-        
-
-
-        //close socket
-        
-    
-
     }
     return 0;
 }
