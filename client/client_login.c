@@ -5,7 +5,6 @@
 #include <ctype.h>
 
 void client_login(char* message, char *userid, char *pass){
-    printf("userid: %s\n", userid);
     //validar argumentos
     if (strlen(userid) != 6){
         printf("Invalid userid\n");
