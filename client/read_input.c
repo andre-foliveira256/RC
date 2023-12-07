@@ -58,7 +58,7 @@ int read_input(char* buffer, char* input, char* userID, char* password){
     }
 
     else if(!strcmp(command, "show_record") || !strcmp(command, "sr")){
-        
+
     }
 
     else if (!strcmp(command, "exit\n")) {
