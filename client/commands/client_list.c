@@ -4,8 +4,8 @@
 #include <string.h>
 #include <ctype.h>
 
-void  myauctions(char* message){
+void  list(char* message){
 
-    // snprintf(message, "LST");
+    sprintf(message, "LST");
  
 }
