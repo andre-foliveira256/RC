@@ -3,4 +3,7 @@
 #include "commands/client_unregister.c"
 #include "commands/translate_buff.c"
 #include "commands/open_a.c"
-#include "commands/read_input.c"    
+#include "commands/read_input.c"  
+#include "commands/client_myauctions.c"  
+#include "commands/client_mybids.c"  
+#include "commands/client_list.c"  

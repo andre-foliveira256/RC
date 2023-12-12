@@ -46,22 +46,19 @@ int read_input(char* buffer, char* input, char* userID, char* password){
         return TCP;
     }
     else if (!strcmp(command, "myauctions") || !strcmp(command, "ma")) {
-        /* myauctions(userID, AS_ip, AS_port);
-            *///TODO ver se está a funcionar bem
-
-
-
-
-
+        myauctions(buffer, userID);
+        return UDP;
 
     }
 
     else if(!strcmp(command, "mybids") || !strcmp(command, "mb")){
-
+        mybids(buffer, userID);
+        return UDP;
     }
 
     else if(!strcmp(command, "list") || !strcmp(command, "l")){
-
+        list(buffer);
+        return UDP;
     }
 
     else if(!strcmp(command, "show_asset") || !strcmp(command, "sa")){
