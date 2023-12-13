@@ -34,15 +34,22 @@ int read_input(char* buffer, char* input, char* userID, char* password){
     }
 
     else if (!strcmp(command, "open")){
+        userid = strtok(NULL, " ");
+        pass = strtok(NULL, " ");
         char* name = strtok(NULL, " ");
-        char* asset_fname = strtok(NULL, " ");
         int   start_value = atoi(strtok(NULL, " "));
         int   timeactive = atoi(strtok(NULL, " "));
-        open_a(buffer, userID, password, name, asset_fname, start_value, timeactive);
+        char* fname = strtok(NULL, " ");
+        int fsize = strtok(NULL, " ");
+        char* fdata = strtok(NULL, "\n");
+        client_open(buffer, userid, pass, name, start_value, timeactive, fname, fsize, fdata);
         return TCP;
     }
     else if(!strcmp(command, "close")){
-
+        userid = strtok(NULL, " ");
+        pass = strtok(NULL, " ");
+        char* aid = strtok(NULL, " ");
+        client_close(buffer, userid, pass, aid);
         return TCP;
     }
     else if (!strcmp(command, "myauctions") || !strcmp(command, "ma")) {
@@ -62,11 +69,21 @@ int read_input(char* buffer, char* input, char* userID, char* password){
     }
 
     else if(!strcmp(command, "show_asset") || !strcmp(command, "sa")){
+        char* aid = strtok(NULL, " ");
+        client_showasset(buffer, aid);
+    }
 
+    else if(!strcmp(command, "bid") || !strcmp(command, "b")){
+        userid = strtok(NULL, " ");
+        pass = strtok(NULL, " ");
+        char* aid = strtok(NULL, " "); 
+        char* value = strtok(NULL, " "); 
+        client_bids(buffer, userid, pass, aid, value);        
     }
 
     else if(!strcmp(command, "show_record") || !strcmp(command, "sr")){
-        showrecord(buffer, userID);
+        char * aid = strtok(NULL, " ");
+        showrecord(buffer, aid);
         return UDP;
     }
 
