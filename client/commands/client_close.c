@@ -18,5 +18,5 @@ void client_close(char* message, char *userid, char *pass, char* aid){
         printf("Invalid aution id\n");
     }
 
-    sprintf(message, "CLS %s %s %s ", userid, pass, aid);
+    sprintf(message, "CLS %s %s %s\n", userid, pass, aid);
 }

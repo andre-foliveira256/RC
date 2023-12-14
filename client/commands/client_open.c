@@ -22,5 +22,5 @@ void client_open(char* message, char *userid, char *pass, char *name, int start_
         printf("File size exceeded the limit\n");
     }
 
-    sprintf(message, "OPA %s %s %s %i %i %s %i %s", userid, pass, name, start_value, timeactive, fname, fsize, fdata);
+    sprintf(message, "OPA %s %s %s %i %i %s %i %s\n", userid, pass, name, start_value, timeactive, fname, fsize, fdata);
 }

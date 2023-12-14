@@ -18,6 +18,6 @@ void  client_bids(char* message, char* userid, char* pass, char *aid, int value)
         printf("Invalid aution id\n");
     }
 
-    sprintf(message, "BID %s %s %s %i", userid, pass, aid, value);
+    sprintf(message, "BID %s %s %s %i\n", userid, pass, aid, value);
 
 }

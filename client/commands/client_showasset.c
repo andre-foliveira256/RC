@@ -10,6 +10,6 @@ void  client_showasset(char* message, char *aid){
         printf("invalid auction id\n");
     }
 
-    sprintf(message, "SAS %s", aid);
+    sprintf(message, "SAS %s\n", aid);
 
 }

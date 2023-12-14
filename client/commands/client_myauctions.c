@@ -10,6 +10,6 @@ void  myauctions(char* message, char *userid){
         printf("user not logged in\n");
     }
 
-    sprintf(message, "LMA %s", userid);
+    sprintf(message, "LMA %s\n", userid);
 
 }

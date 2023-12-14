@@ -10,6 +10,6 @@ void  showrecord(char* message, char *aid){
         printf("invalid auction id\n");
     }
 
-    sprintf(message, "SRC %s", aid);
+    sprintf(message, "SRC %s\n", aid);
 
 }

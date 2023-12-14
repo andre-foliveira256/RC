@@ -17,7 +17,7 @@ void client_login(char* message, char *userid, char *pass){
         pass = NULL;
     }
 
-    sprintf(message, "LIN %s %s", userid, pass);
+    sprintf(message, "LIN %s %s\n", userid, pass);
 }
 
 

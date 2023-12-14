@@ -10,6 +10,6 @@ void  mybids(char* message, char *userid){
         printf("user not logged in\n");
     }
 
-    sprintf(message, "LMB %s", userid);
+    sprintf(message, "LMB %s\n", userid);
 
 }
