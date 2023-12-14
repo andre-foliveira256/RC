@@ -78,11 +78,14 @@ int main(int argc, char *argv[]){
 
             //connect socket
             n = connect(fd, res->ai_addr, res->ai_addrlen);
-            if (n!=0) exit(1);
+            if (n==-1) exit(1);
 
             //send message
             n = write(fd, buffer, strlen(buffer));
-            if (n!=0) exit(1);
+            if (n==-1) exit(1);
+
+            n = read(fd, msg, sizeof(msg));
+            if (n==-1) exit(1);
 
             translate_buff(msg);
             memset(msg, '\0', sizeof(msg));

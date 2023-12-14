@@ -68,12 +68,14 @@ int read_input(char* buffer, char* input, char* userID, char* password){
     else if(!strcmp(command, "show_asset") || !strcmp(command, "sa")){
         char* aid = strtok(NULL, " ");
         client_showasset(buffer, aid);
+        return TCP;
     }
 
     else if(!strcmp(command, "bid") || !strcmp(command, "b")){
         char* aid = strtok(NULL, " "); 
         int value = atoi(strtok(NULL, " ")); 
-        client_bids(buffer, userID, password, aid, value);        
+        client_bids(buffer, userID, password, aid, value);
+        return TCP;      
     }
 
     else if(!strcmp(command, "show_record") || !strcmp(command, "sr")){
