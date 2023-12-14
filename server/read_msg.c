@@ -23,7 +23,7 @@ void read_msg(char* message, int mode, char* ip, char* port){
         char* user = strtok(NULL, " ");
         memcpy(userID, user, sizeof(userID));
         char* pass = strtok(NULL, "\n");
-        logout(user, pass);
+        logout(user, pass, message);
     }
     /*  
     if (!strcmp(code, "UNR")){
