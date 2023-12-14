@@ -125,7 +125,7 @@ void translate_buff(char* message){
 
         status = NULL;
         fname = NULL;
-        fsize = NULL;
+        fsize = 0;
         fdata = NULL;
     }
 

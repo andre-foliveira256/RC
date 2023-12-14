@@ -52,18 +52,18 @@ int read_input(char* buffer, char* input, char* userID, char* password){
         client_close(buffer, userid, pass, aid);
         return TCP;
     }
-    else if (!strcmp(command, "myauctions") || !strcmp(command, "ma")) {
+    else if (!strcmp(command, "myauctions\n") || !strcmp(command, "ma\n")) {
         myauctions(buffer, userID);
         return UDP;
 
     }
 
-    else if(!strcmp(command, "mybids") || !strcmp(command, "mb")){
+    else if(!strcmp(command, "mybids\n") || !strcmp(command, "mb\n")){
         mybids(buffer, userID);
         return UDP;
     }
 
-    else if(!strcmp(command, "list") || !strcmp(command, "l")){
+    else if(!strcmp(command, "list\n") || !strcmp(command, "l\n")){
         list(buffer);
         return UDP;
     }
