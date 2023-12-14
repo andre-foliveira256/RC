@@ -9,9 +9,9 @@
 #define EXIT -1
 
 
-char* userid, *pass;
 
 int read_input(char* buffer, char* input, char* userID, char* password){
+    char* userid, *pass;
     char* command = strtok(input, " ");
 
     if (!strcmp(command, "login")) {
@@ -38,8 +38,9 @@ int read_input(char* buffer, char* input, char* userID, char* password){
         char* asset_fname = strtok(NULL, " ");
         int   start_value = atoi(strtok(NULL, " "));
         int   timeactive = atoi(strtok(NULL, " "));
-       
-        client_open(buffer, userID, password, name, asset_fname, start_value, timeactive);
+        char* path;
+        client_open(buffer, userID, password, name, asset_fname, start_value, timeactive, path);
+        memcpy(path, path, sizeof(path));
         return TCP;
     }
     else if(!strcmp(command, "close")){

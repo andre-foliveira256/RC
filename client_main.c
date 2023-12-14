@@ -10,15 +10,17 @@
 #include "client/includes.h"
 
 
-#define AS_ip "localhost"
-#define AS_port "58041"
+#define AS_ip "tejo.tecnico.ulisboa.pt"
+#define AS_port "58011"
 #define UDP 1
 #define TCP 0
 
 char msg[128];
 char userID[6];
 char password[8];
-char buffer[128];
+char buffer[1024];
+char path[128];
+int  tcp_check = 1;
 
 int main(int argc, char *argv[]){
     int check = 1, sock_mode;
@@ -81,8 +83,22 @@ int main(int argc, char *argv[]){
             if (n==-1) exit(1);
 
             //send message
-            n = write(fd, buffer, strlen(buffer));
-            if (n==-1) exit(1);
+            if (tcp_check == 0) {
+                FILE *fp;
+                fp = fopen(path, "rb");
+                if (fp == NULL) exit(1);
+                while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+                    n = write(fd, buffer, strlen(buffer));
+                    if (n==-1) exit(1);
+                    memset(buffer, '\0', sizeof(buffer));
+                }
+                fclose(fp);
+                tcp_check = 1;
+            }
+            else{
+                n = write(fd, buffer, strlen(buffer));
+                if (n==-1) exit(1);
+            }
 
             n = read(fd, msg, sizeof(msg));
             if (n==-1) exit(1);
