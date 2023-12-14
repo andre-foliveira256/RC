@@ -25,13 +25,13 @@ void read_msg(char* message, int mode, char* ip, char* port){
         char* pass = strtok(NULL, "\n");
         logout(user, pass, message);
     }
-    /*  
     if (!strcmp(code, "UNR")){
         char* type = "unregister";
         char* user = strtok(NULL, " ");
         char* pass = strtok(NULL, "\n");
-        unregister(user, pass);
+        unregister(user, pass, message);
     } 
+    /*  
     if (!strcmp(code, "LMA")){
         char* type = "myauctions";
         char* user = strtok(NULL, " ");

@@ -20,14 +20,14 @@ void translate_buff(char* message){
         char* status = strtok(NULL, "\n");
         if (!strcmp(status, "OK"))  printf("successful logout\n");
         if (!strcmp(status, "NOK")) printf("user not logged in\n");
-        if (!strcmp(status, "UNR")) printf("unkown user\n");
+        if (!strcmp(status, "UNR")) printf("user not registered\n");
         status = NULL;
     }
     //unregister
     if (!strcmp(code, "RUR")){
         char* status = strtok(NULL, "\n");
         if (!strcmp(status, "OK"))  printf("successful unregister\n");
-        if (!strcmp(status, "NOK")) printf("incorrect unregister attempt\n");
+        if (!strcmp(status, "NOK")) printf("user not logged in\n");
         if (!strcmp(status, "UNR")) printf("unkown user\n");
         status = NULL;
 

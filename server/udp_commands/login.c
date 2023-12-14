@@ -33,7 +33,7 @@ int check_user(char* password, char* pass_f, char* login_f){
         if (strcmp(pass, password) != 0) return(0);
 
         //Check if user is logged in
-        if (stat(login_f, &st) == 0){
+        if (stat(login_f, &st) != 0){
             return(1);
         }
     }

@@ -10,13 +10,11 @@ void client_login(char* message, char *userid, char *pass){
         printf("Invalid userid\n");
         userid = NULL;
         pass = NULL;
-        exit(1);
     }
     if (strlen(pass) != 8){
         printf("Invalid pass\n");
         userid = NULL;
         pass = NULL;
-        exit(1);
     }
 
     sprintf(message, "LIN %s %s\n", userid, pass);

@@ -17,14 +17,11 @@ char buf[1024];
 
 int main(int argc, char *argv[]){
     int out_fds;
-    
-    if (argc > 1){
-        if(!strcmp(argv[argc-1], "-v")){
-            v_mode = 1;
-        }
-        if(!strcmp(argv[1], "-p")){
-            port = argv[2];
-        }
+    if(!strcmp(argv[argc-1], "-v")){
+        v_mode = 1;
+    }
+    if (argc > 1 && !strcmp(argv[1], "-p")){
+        port = argv[2];
     }
     else{
         port = GROUPPORT;
@@ -78,6 +75,7 @@ int main(int argc, char *argv[]){
 
 
     while(1){
+        printf("port: %s\n", port);
         testfds = inputs;
         out_sock = select(FD_SETSIZE, &testfds, (fd_set *)NULL, (fd_set *)NULL, NULL);
         

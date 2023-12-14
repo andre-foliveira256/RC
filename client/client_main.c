@@ -10,8 +10,8 @@
 #include "includes.h"
 
 
-#define AS_ip "tejo.tecnico.ulisboa.pt"
-#define AS_port "58011"
+#define AS_ip "localhost"
+#define AS_port "58041"
 #define UDP 1
 #define TCP 0
 
