@@ -1,32 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+char userID[6];
+
 
 void read_msg(char* message, int mode, char* ip, char* port){
     char* user;
+    char* pass;
     char* type;
     
     char* code = strtok(message, " ");
 
     if (!strcmp(code, "LIN")){
-        char* type = "login";
-        char* user = strtok(NULL, " ");
-        char* pass = strtok(NULL, "\n");
+        type = "login";
+        user = strtok(NULL, " ");
+        memcpy(userID, user, sizeof(userID));
+        pass = strtok(NULL, "\n");
         login(user, pass, message);
     }
-   /*  if (!strcmp(code, "LOU")){
+    if (!strcmp(code, "LOU")){
         char* type = "logout";
         char* user = strtok(NULL, " ");
+        memcpy(userID, user, sizeof(userID));
         char* pass = strtok(NULL, "\n");
         logout(user, pass);
     }
+    /*  
     if (!strcmp(code, "UNR")){
         char* type = "unregister";
         char* user = strtok(NULL, " ");
         char* pass = strtok(NULL, "\n");
         unregister(user, pass);
-    } */
-    /*
+    } 
     if (!strcmp(code, "LMA")){
         char* type = "myauctions";
         char* user = strtok(NULL, " ");
@@ -54,5 +59,5 @@ void read_msg(char* message, int mode, char* ip, char* port){
     } */
 
 
-    printf("New request:\nUser: %s\nType: %s\nIPaddress: %s\nPort: %s\n", user, type, ip, port);
+    if(mode) printf("New request:\nUser: %s\nType: %s\nIPaddress: %s\nPort: %s\n", userID, type, ip, port);
 }

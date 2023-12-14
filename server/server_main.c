@@ -11,7 +11,7 @@
 
 #define GROUPPORT "58041"
 
-int v_mode = 1;
+int v_mode = 0;
 char* port;
 char buf[1024];
 
@@ -20,7 +20,7 @@ int main(int argc, char *argv[]){
     
     if (argc > 1){
         if(!strcmp(argv[argc-1], "-v")){
-            v_mode = 0;
+            v_mode = 1;
         }
         if(!strcmp(argv[1], "-p")){
             port = argv[2];

@@ -49,8 +49,6 @@ int check_user(char* password, char* pass_f, char* login_f){
 
 
 int login(char* userID, char* password,char* message){
-    printf("userID: %s\n", userID);
-    printf("password: %s\n", password);
     
     struct stat st;
     char* path;
@@ -59,10 +57,10 @@ int login(char* userID, char* password,char* message){
 
     if (strlen(userID) !=6) return(0);
 
-    path = (char*)malloc(strlen("/USERS/") + strlen(userID) + 1);
+    path = (char*)malloc(strlen("/../USERS/") + strlen(userID) + 1);
     
     //file name creation
-    sprintf(path, "USERS/%s", userID);
+    sprintf(path, "/../USERS/%s", userID);
     sprintf(pass_f, "%s/%s_pass.txt", path, userID);
     sprintf(login_f, "%s/%s_login.txt", path, userID);
 
