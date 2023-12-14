@@ -20,11 +20,7 @@ int check_user(char* password, char* pass_f, char* login_f){
     struct stat st;
 
     //If user is not registered
-    if (stat(pass_f, &st) != 0){
-        create_file(pass_f, 0, password);
-        create_file(login_f, 1, NULL);
-        return(2);    
-    }
+    if (stat(pass_f, &st) != 0) return(2);
     //If user is registered
     else{
         //Compare password
@@ -37,12 +33,11 @@ int check_user(char* password, char* pass_f, char* login_f){
         if (strcmp(pass, password) != 0) return(0);
 
         //Check if user is logged in
-        if (stat(login_f, &st) != 0){
-            create_file(login_f, 1, NULL);
+        if (stat(login_f, &st) == 0){
             return(1);
         }
     }
-    return(1);
+    return(-1);
 }
 
 
@@ -60,14 +55,14 @@ int login(char* userID, char* password,char* message){
     path = (char*)malloc(strlen("/../USERS/") + strlen(userID) + 1);
     
     //file name creation
-    sprintf(path, "/../USERS/%s", userID);
+    sprintf(path, "../USERS/%s", userID);
     sprintf(pass_f, "%s/%s_pass.txt", path, userID);
     sprintf(login_f, "%s/%s_login.txt", path, userID);
 
     
 
 
-    //If user doesnt exists
+    //If user doesnt exist
     if (stat(path, &st) != 0) {
         if(mkdir(path, 0700)) return(0);
         create_file(pass_f, 0, password);
@@ -78,13 +73,19 @@ int login(char* userID, char* password,char* message){
     else{
         int c = check_user(password, pass_f, login_f);
         if(c == 1){
+            create_file(login_f, 1, NULL);
             sprintf(message, "RLI OK\n");
         }
         else if(c == 2){
+            create_file(pass_f, 0, password);
+            create_file(login_f, 1, NULL);
             sprintf(message, "RLI REG\n");
         }
-        else{
+        else if(c == 0){
             sprintf(message, "RLI NOK\n");
+        }
+        else if(c == -1){
+            sprintf(message, "ERR\n");
         }
     }
     free(path);
