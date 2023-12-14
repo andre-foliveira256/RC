@@ -40,7 +40,7 @@ int read_input(char* buffer, char* input, char* userID, char* password){
         int   start_value = atoi(strtok(NULL, " "));
         int   timeactive = atoi(strtok(NULL, " "));
         char* fname = strtok(NULL, " ");
-        int fsize = strtok(NULL, " ");
+        int fsize = atoi(strtok(NULL, " "));
         char* fdata = strtok(NULL, "\n");
         client_open(buffer, userid, pass, name, start_value, timeactive, fname, fsize, fdata);
         return TCP;
@@ -77,7 +77,7 @@ int read_input(char* buffer, char* input, char* userID, char* password){
         userid = strtok(NULL, " ");
         pass = strtok(NULL, " ");
         char* aid = strtok(NULL, " "); 
-        char* value = strtok(NULL, " "); 
+        int value = atoi(strtok(NULL, " ")); 
         client_bids(buffer, userid, pass, aid, value);        
     }
 

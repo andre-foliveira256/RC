@@ -4,7 +4,7 @@
 #include <string.h>
 #include <ctype.h>
 
-void  client_showasst(char* message, char *aid){
+void  client_showasset(char* message, char *aid){
     //validar argumentos
     if (strlen(aid) != 3){
         printf("invalid auction id\n");

@@ -88,8 +88,8 @@ void translate_buff(char* message){
 
     //open
     if (!strcmp(code, "ROA")){
-        char* status = srttok(NULL, " ");
-        char* aid = srttok(NULL, "\n");
+        char* status = strtok(NULL, " ");
+        char* aid = strtok(NULL, "\n");
 
         if (!strcmp(status, "NOK")) printf("auction could not be strated\n"); 
         if (!strcmp(status, "OK")) printf("The auction id is: %s\n", aid); 
@@ -101,7 +101,7 @@ void translate_buff(char* message){
 
     //close
     if (!strcmp(code, "RCL")){
-        char* status = srttok(NULL, " ");
+        char* status = strtok(NULL, " ");
 
         if (!strcmp(status, "OK")) printf("auction closed successfully\n"); 
         if (!strcmp(status, "NGL")) printf("user is not logged in\n"); 
@@ -115,10 +115,10 @@ void translate_buff(char* message){
 
     //show_assets
     if (!strcmp(code, "RCL")){
-        char* status = srttok(NULL, " ");
-        char* fname = strttok(NULL, " "); //TODO: ver se tenho que separar isto
-        int fsize = strttok(NULL, " ");
-        int fdata = strttok(NULL, "\n");
+        char* status = strtok(NULL, " ");
+        char* fname = strtok(NULL, " "); //TODO: ver se tenho que separar isto
+        int fsize = atoi(strtok(NULL, " "));
+        char* fdata = strtok(NULL, "\n");
 
         if (!strcmp(status, "OK")) printf("asset for sale: %s\n", fdata); 
         if (!strcmp(status, "NOK")) printf("there was an error\n"); 
@@ -131,7 +131,7 @@ void translate_buff(char* message){
 
     //bid
     if (!strcmp(code, "RCL")){
-        char* status = srttok(NULL, " "); 
+        char* status = strtok(NULL, " "); 
 
         if (!strcmp(status, "NOK")) printf("auction is not active\n");
         if (!strcmp(status, "NLG")) printf("user is not logged in\n"); 
