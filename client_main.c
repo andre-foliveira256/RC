@@ -7,6 +7,7 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <string.h>
+#include <sys/sendfile.h>
 #include "client/includes.h"
 
 
@@ -18,14 +19,14 @@
 char msg[128];
 char userID[6];
 char password[8];
-char buffer[1024];
+char buffer[6010];
 char path[128];
-int  tcp_check = 1;
+char tcp_check[1];
 
 int main(int argc, char *argv[]){
     int check = 1, sock_mode;
     char input[128];
-    
+
     //define socket variables
     int fd, errcode;
     ssize_t n;
@@ -39,9 +40,10 @@ int main(int argc, char *argv[]){
     }
 
 
-    while (check) {        
+    while (check) {
+        printf("> ");    
         fgets(input, sizeof(input), stdin);
-        sock_mode = read_input(buffer, input, userID, password);
+        sock_mode = read_input(buffer, input, userID, password, tcp_check, path);
         
         //open socket
        if (sock_mode == UDP){
@@ -83,26 +85,25 @@ int main(int argc, char *argv[]){
             if (n==-1) exit(1);
 
             //send message
-            if (tcp_check == 0) {
-                FILE *fp;
-                fp = fopen(path, "rb");
-                if (fp == NULL) exit(1);
-                while (fgets(buffer, sizeof(buffer), fp) != NULL) {
-                    n = write(fd, buffer, strlen(buffer));
-                    if (n==-1) exit(1);
-                    memset(buffer, '\0', sizeof(buffer));
-                }
-                fclose(fp);
-                tcp_check = 1;
-            }
-            else{
-                n = write(fd, buffer, strlen(buffer));
-                if (n==-1) exit(1);
-            }
+
+            printf("buffer: %.*s\n",1024, buffer);
+            n = write(fd, buffer, sizeof(buffer));
+            if (n==-1) exit(1);
+
+
+            if (strcmp(tcp_check, "1") == 0){
+                FILE *fp = fopen(path, "r");
+                struct stat filestat;
+                int ret_stat;
+                ret_stat = stat(path , &filestat);
+                int fsize = filestat.st_size;
+                int filefd = fileno(fp);
+                n = sendfile(fd, filefd, NULL, fsize);
+            };
+           
 
             n = read(fd, msg, sizeof(msg));
             if (n==-1) exit(1);
-
             translate_buff(msg);
             memset(msg, '\0', sizeof(msg));
             memset(buffer, '\0', sizeof(buffer));

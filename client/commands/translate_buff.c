@@ -89,9 +89,9 @@ void translate_buff(char* message){
     //open
     if (!strcmp(code, "ROA")){
         char* status = strtok(NULL, " ");
-        char* aid = strtok(NULL, "\n");
+        if (!strcmp(status, "NOK\n")) printf("auction could not be started\n"); 
 
-        if (!strcmp(status, "NOK\n")) printf("auction could not be strated\n"); 
+        char* aid = strtok(NULL, "\n");
         if (!strcmp(status, "OK")) printf("The auction id is: %s\n", aid); 
         //TODO: acabar a conecção com o TCP
 
@@ -141,7 +141,6 @@ void translate_buff(char* message){
 
         status = NULL;
     } 
-
     //ERR
     if (!strcmp(code, "ERR\n")){
         printf("There was an erro!\n");

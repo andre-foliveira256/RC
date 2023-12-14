@@ -10,7 +10,7 @@
 
 
 
-int read_input(char* buffer, char* input, char* userID, char* password){
+int read_input(char* buffer, char* input, char* userID, char* password,char* tcp_check, char* fpath){
     char* userid, *pass;
     char* command = strtok(input, " ");
 
@@ -36,11 +36,10 @@ int read_input(char* buffer, char* input, char* userID, char* password){
     else if (!strcmp(command, "open")){
         char* name = strtok(NULL, " ");
         char* asset_fname = strtok(NULL, " ");
-        int   start_value = atoi(strtok(NULL, " "));
-        int   timeactive = atoi(strtok(NULL, " "));
-        char* path;
-        client_open(buffer, userID, password, name, asset_fname, start_value, timeactive, path);
-        memcpy(path, path, sizeof(path));
+        char* start_value = strtok(NULL, " ");
+        char* timeactive = strtok(NULL, "\n");
+        client_open(buffer, userID, password, name, asset_fname, start_value, timeactive, fpath);
+        memcpy(tcp_check, "1", sizeof(tcp_check));
         return TCP;
     }
     else if(!strcmp(command, "close")){
