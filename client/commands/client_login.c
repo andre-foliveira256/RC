@@ -11,7 +11,7 @@ void client_login(char* message, char *userid, char *pass){
         userid = NULL;
         pass = NULL;
     }
-    if (strlen(pass) != 9){
+    if (strlen(pass) != 8){
         printf("Invalid pass\n");
         userid = NULL;
         pass = NULL;

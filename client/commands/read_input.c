@@ -16,7 +16,7 @@ int read_input(char* buffer, char* input, char* userID, char* password){
 
     if (!strcmp(command, "login")) {
         userid = strtok(NULL, " ");
-        pass = strtok(NULL, " ");
+        pass = strtok(NULL, "\n");
         client_login(buffer, userid, pass);
         memcpy(userID, userid, sizeof(userID));
         memcpy(password, pass, sizeof(password));
