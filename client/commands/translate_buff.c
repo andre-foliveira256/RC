@@ -38,8 +38,8 @@ void translate_buff(char* message){
         char* ma_list = strtok(NULL, "\n");
 
         if (!strcmp(status, "OK"))  printf("%s\n", ma_list);
-        if (!strcmp(status, "NLG"))  printf("user is not logged in\n");
-        if (!strcmp(status, "NOK")) printf("user has no ongoing bids\n");
+        if (!strcmp(status, "NLG\n"))  printf("user is not logged in\n");
+        if (!strcmp(status, "NOK\n")) printf("user has no ongoing bids\n");
 
         status = NULL;
         ma_list = NULL;
@@ -51,8 +51,8 @@ void translate_buff(char* message){
         char* mb_list = strtok(NULL, "\n");
 
         if (!strcmp(status, "OK"))  printf("%s\n", mb_list);
-        if (!strcmp(status, "NLG"))  printf("user is not logged in\n");
-        if (!strcmp(status, "NOK")) printf("user has no ongoing auctions\n");
+        if (!strcmp(status, "NLG\n"))  printf("user is not logged in\n");
+        if (!strcmp(status, "NOK\n")) printf("user has no ongoing auctions\n");
 
         status = NULL;
         mb_list = NULL;
@@ -63,7 +63,7 @@ void translate_buff(char* message){
         char* list = strtok(NULL, "\n");
 
         if (!strcmp(status, "OK"))  printf("%s\n", list);
-        if (!strcmp(status, "NOK")) printf("no auctions was yet started\n");
+        if (!strcmp(status, "NOK\n")) printf("no auctions was yet started\n");
 
         status = NULL;
         list = NULL;
@@ -73,7 +73,7 @@ void translate_buff(char* message){
         char* status = strtok(NULL, " ");
         char* info = strtok(NULL, "\n");
 
-        if (!strcmp(status, "NOK")) printf("auction does not exist\n"); 
+        if (!strcmp(status, "NOK\n")) printf("auction does not exist\n"); 
         if (!strcmp(status, "OK")){
             while (info != NULL){
                 printf ("%s\n", info);
@@ -91,7 +91,7 @@ void translate_buff(char* message){
         char* status = strtok(NULL, " ");
         char* aid = strtok(NULL, "\n");
 
-        if (!strcmp(status, "NOK")) printf("auction could not be strated\n"); 
+        if (!strcmp(status, "NOK\n")) printf("auction could not be strated\n"); 
         if (!strcmp(status, "OK")) printf("The auction id is: %s\n", aid); 
         //TODO: acabar a conecção com o TCP
 
@@ -104,24 +104,24 @@ void translate_buff(char* message){
         char* status = strtok(NULL, " ");
 
         if (!strcmp(status, "OK")) printf("auction closed successfully\n"); 
-        if (!strcmp(status, "NGL")) printf("user is not logged in\n"); 
-        if (!strcmp(status, "EAU")) printf("auction does not exist\n"); 
-        if (!strcmp(status, "EOW")) printf("auction not owned by this user\n"); 
-        if (!strcmp(status, "END")) printf("auction aalready finished\n"); 
+        if (!strcmp(status, "NGL\n")) printf("user is not logged in\n"); 
+        if (!strcmp(status, "EAU\n")) printf("auction does not exist\n"); 
+        if (!strcmp(status, "EOW\n")) printf("auction not owned by this user\n"); 
+        if (!strcmp(status, "END\n")) printf("auction aalready finished\n"); 
 
 
         status = NULL;
     }
 
     //show_assets
-    if (!strcmp(code, "RCL")){
+    if (!strcmp(code, "RSA")){
         char* status = strtok(NULL, " ");
         char* fname = strtok(NULL, " "); //TODO: ver se tenho que separar isto
         int fsize = atoi(strtok(NULL, " "));
         char* fdata = strtok(NULL, "\n");
 
         if (!strcmp(status, "OK")) printf("asset for sale: %s\n", fdata); 
-        if (!strcmp(status, "NOK")) printf("there was an error\n"); 
+        if (!strcmp(status, "NOK\n")) printf("there was an error\n"); 
 
         status = NULL;
         fname = NULL;
@@ -130,17 +130,22 @@ void translate_buff(char* message){
     }
 
     //bid
-    if (!strcmp(code, "RCL")){
+    if (!strcmp(code, "RBD")){
         char* status = strtok(NULL, " "); 
 
-        if (!strcmp(status, "NOK")) printf("auction is not active\n");
-        if (!strcmp(status, "NLG")) printf("user is not logged in\n"); 
-        if (!strcmp(status, "ACC")) printf("bid was accepted\n");
-        if (!strcmp(status, "REF")) printf("bid was not acceptes because a larger bid has already been placed\n");
-        if (!strcmp(status, "ILG")) printf("user can not make a bid in a auction hosted by himself\n");
+        if (!strcmp(status, "NOK\n")) printf("auction is not active\n");
+        if (!strcmp(status, "NLG\n")) printf("user is not logged in\n"); 
+        if (!strcmp(status, "ACC\n")) printf("bid was accepted\n");
+        if (!strcmp(status, "REF\n")) printf("bid was not acceptes because a larger bid has already been placed\n");
+        if (!strcmp(status, "ILG\n")) printf("user can not make a bid in a auction hosted by himself\n");
 
         status = NULL;
     } 
+
+    //ERR
+    if (!strcmp(code, "ERR\n")){
+        printf("There was an erro!\n");
+    }
 
     code = NULL;
     

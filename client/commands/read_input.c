@@ -34,15 +34,12 @@ int read_input(char* buffer, char* input, char* userID, char* password){
     }
 
     else if (!strcmp(command, "open")){
-        userid = strtok(NULL, " ");
-        pass = strtok(NULL, " ");
         char* name = strtok(NULL, " ");
+        char* asset_fname = strtok(NULL, " ");
         int   start_value = atoi(strtok(NULL, " "));
         int   timeactive = atoi(strtok(NULL, " "));
-        char* fname = strtok(NULL, " ");
-        int fsize = atoi(strtok(NULL, " "));
-        char* fdata = strtok(NULL, "\n");
-        client_open(buffer, userid, pass, name, start_value, timeactive, fname, fsize, fdata);
+       
+        client_open(buffer, userID, password, name, asset_fname, start_value, timeactive);
         return TCP;
     }
     else if(!strcmp(command, "close")){
@@ -74,11 +71,9 @@ int read_input(char* buffer, char* input, char* userID, char* password){
     }
 
     else if(!strcmp(command, "bid") || !strcmp(command, "b")){
-        userid = strtok(NULL, " ");
-        pass = strtok(NULL, " ");
         char* aid = strtok(NULL, " "); 
         int value = atoi(strtok(NULL, " ")); 
-        client_bids(buffer, userid, pass, aid, value);        
+        client_bids(buffer, userID, password, aid, value);        
     }
 
     else if(!strcmp(command, "show_record") || !strcmp(command, "sr")){

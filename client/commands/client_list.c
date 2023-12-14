@@ -6,6 +6,6 @@
 
 void  list(char* message){
 
-    sprintf(message, "LST");
+    sprintf(message, "LST\n");
  
 }
