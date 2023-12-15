@@ -29,7 +29,6 @@ int unregister(char* userID, char* password, char *message){
         sprintf(message, "RUR OK\n");
         unlink(pass_f);
         unlink(login_f);
-        rmdir(path);
     }
     else if (c == 2){
         sprintf(message, "RUR NOK\n");
