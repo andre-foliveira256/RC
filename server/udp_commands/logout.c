@@ -29,7 +29,7 @@ int check_login(char* userID, char* path, char* pass_f, char* login_f){
 
 
 
-int logout(char* userID, char* password, char *message){
+int logout_udp(char* userID, char* password, char *message){
     
     struct stat st;
     char* path;

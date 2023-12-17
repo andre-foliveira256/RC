@@ -43,7 +43,7 @@ int check_user(char* password, char* pass_f, char* login_f){
 
 
 
-int login(char* userID, char* password,char* message){
+int login_udp(char* userID, char* password,char* message){
     
     struct stat st;
     char* path;
