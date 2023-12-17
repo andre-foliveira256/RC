@@ -49,6 +49,8 @@ int login_udp(char* userID, char* password,char* message){
     char* path;
     char pass_f[35];
     char login_f[35];
+    char hosted[35];
+    char bided[35];
 
     if (strlen(userID) !=6) return(0);
 
@@ -58,8 +60,9 @@ int login_udp(char* userID, char* password,char* message){
     sprintf(path, "USERS/%s", userID);
     sprintf(pass_f, "%s/%s_pass.txt", path, userID);
     sprintf(login_f, "%s/%s_login.txt", path, userID);
+    sprintf(hosted, "%s/HOSTED", path);
+    sprintf(bided, "%s/BIDED", path);
 
-    
 
 
     //If user doesnt exist
@@ -67,6 +70,8 @@ int login_udp(char* userID, char* password,char* message){
         if(mkdir(path, 0700)) return(0);
         create_file(pass_f, 0, password);
         create_file(login_f, 1, NULL);
+        mkdir(hosted, 0700);
+        mkdir(bided, 0700);
         sprintf(message, "RLI REG\n");
     }
     //If user exists

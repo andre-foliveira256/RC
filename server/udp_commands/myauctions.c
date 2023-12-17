@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <dirent.h>
 
 
 int myauctions_udp(char* userID, char *message){
@@ -12,6 +13,7 @@ int myauctions_udp(char* userID, char *message){
     char* path;
     char pass_f[35];
     char login_f[35];
+    char auctions_f[35];
 
     if (strlen(userID) !=6){
         sprintf(message, "RMA ERR\n");
@@ -22,11 +24,22 @@ int myauctions_udp(char* userID, char *message){
     sprintf(path, "USERS/%s", userID);
     sprintf(pass_f, "%s/%s_pass.txt", path, userID);
     sprintf(login_f, "%s/%s_login.txt", path, userID);
+    sprintf(auctions_f, "%s/HOSTED", path);
 
     int c = check_login(userID, path, pass_f, login_f);
     
     if (c == 1){
-        sprintf(message, "RMA OK\n");
+        struct stat dir_stat;
+
+        if (stat(path, &dir_stat) != 0) {
+            sprintf(message, "RMA ERR\n"); 
+        }
+
+        if ((dir_stat.st_size == 4096) == 1){
+            sprintf(message, "RMA NOK\n");
+        }
+        else{sprintf(message, "RMA OK\n");}
+        
     }
     else if (c == 2){
         sprintf(message, "RMA NLG\n");

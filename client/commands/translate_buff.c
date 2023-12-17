@@ -38,7 +38,7 @@ void translate_buff(char* message){
 
         if (!strcmp(status, "OK"))  printf("%s\n", ma_list);
         if (!strcmp(status, "NLG\n"))  printf("user is not logged in\n");
-        if (!strcmp(status, "NOK\n")) printf("user has no ongoing bids\n");
+        if (!strcmp(status, "NOK\n")) printf("user has no ongoing auctions\n");
 
         status = NULL;
         ma_list = NULL;
