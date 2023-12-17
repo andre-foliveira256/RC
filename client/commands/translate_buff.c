@@ -2,7 +2,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 void translate_buff(char* message){    
     char* code = strtok(message, " ");
@@ -11,7 +10,7 @@ void translate_buff(char* message){
     if (!strcmp(code, "RLI")){
         char* status = strtok(NULL, "\n");
         if (!strcmp(status, "OK"))  printf("successful login\n");
-        if (!strcmp(status, "NOK")) printf("incorrect login attempt\n");
+        if (!strcmp(status, "NOK")) printf("incorrect login attempt\n"); 
         if (!strcmp(status, "REG")) printf("new user registered\n");
         status = NULL;
     }
@@ -52,7 +51,7 @@ void translate_buff(char* message){
 
         if (!strcmp(status, "OK"))  printf("%s\n", mb_list);
         if (!strcmp(status, "NLG\n"))  printf("user is not logged in\n");
-        if (!strcmp(status, "NOK\n")) printf("user has no ongoing auctions\n");
+        if (!strcmp(status, "NOK\n")) printf("user has placed no bids\n");
 
         status = NULL;
         mb_list = NULL;
@@ -116,17 +115,9 @@ void translate_buff(char* message){
     //show_assets
     if (!strcmp(code, "RSA")){
         char* status = strtok(NULL, " ");
-        char* fname = strtok(NULL, " "); //TODO: ver se tenho que separar isto
-        int fsize = atoi(strtok(NULL, " "));
-        char* fdata = strtok(NULL, "\n");
-
-        if (!strcmp(status, "OK")) printf("asset for sale: %s\n", fdata); 
         if (!strcmp(status, "NOK\n")) printf("there was an error\n"); 
-
+        if (!strcmp(status, "OK")) strcpy(message, "c");
         status = NULL;
-        fname = NULL;
-        fsize = 0;
-        fdata = NULL;
     }
 
     //bid

@@ -7,7 +7,7 @@
 #define UDP 1
 #define TCP 0
 #define EXIT -1
-
+#define NONE 2
 
 
 int read_input(char* buffer, char* input, char* userID, char* password,char* tcp_check, char* fpath){
@@ -17,14 +17,18 @@ int read_input(char* buffer, char* input, char* userID, char* password,char* tcp
     if (!strcmp(command, "login")) {
         userid = strtok(NULL, " ");
         pass = strtok(NULL, "\n");
-        client_login(buffer, userid, pass);
-        memcpy(userID, userid, sizeof(userID));
-        memcpy(password, pass, sizeof(password));
-        return UDP;
+        if(!client_login(buffer, userid, pass)){
+            memcpy(userID, userid, sizeof(userID));
+            memcpy(password, pass, sizeof(password));
+            return UDP;
+        }
+        else return NONE;
     } 
     
     else if (!strcmp(command, "logout\n")){
         client_logout(buffer, userID, password);
+        memcpy(userID, "", sizeof(userID));
+        memcpy(password, "", sizeof(password));
         return UDP;  
     }
 
@@ -66,8 +70,9 @@ int read_input(char* buffer, char* input, char* userID, char* password,char* tcp
     }
 
     else if(!strcmp(command, "show_asset") || !strcmp(command, "sa")){
-        char* aid = strtok(NULL, " ");
+        char* aid = strtok(NULL, "\n");
         client_showasset(buffer, aid);
+        memcpy(tcp_check, "2", sizeof(tcp_check));
         return TCP;
     }
 
@@ -79,12 +84,13 @@ int read_input(char* buffer, char* input, char* userID, char* password,char* tcp
     }
 
     else if(!strcmp(command, "show_record") || !strcmp(command, "sr")){
-        char * aid = strtok(NULL, " ");
+        char * aid = strtok(NULL, "\n");
         showrecord(buffer, aid);
         return UDP;
     }
 
     else if (!strcmp(command, "exit\n")) {
-        return EXIT;
+        if (strlen(userID) != 0) printf("You must logout before exiting\n");
+        else return EXIT;
     }
 }

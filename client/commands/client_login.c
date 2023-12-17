@@ -4,20 +4,24 @@
 #include <string.h>
 #include <ctype.h>
 
-void client_login(char* message, char *userid, char *pass){
+int client_login(char* message, char *userid, char *pass){
     //validar argumentos
-    if (strlen(userid) != 6){
+     if (strlen(userid) != 6){
         printf("Invalid userid\n");
-        userid = NULL;
-        pass = NULL;
+        return -1;
     }
-    if (strlen(pass) != 8){
-        printf("Invalid pass\n");
-        userid = NULL;
-        pass = NULL;
+    if (strlen(pass) != 8 ){
+        printf("Invalid password: wrong length\n");
+        return -1;
     }
-
+    for (int i = 0; i < 8; i++){
+        if (!isalnum(pass[i])){
+            printf("Invalid password: only alphanumeric characters allowed\n");
+            return -1;
+        }
+    }
     sprintf(message, "LIN %s %s\n", userid, pass);
+    return 0;
 }
 
 
